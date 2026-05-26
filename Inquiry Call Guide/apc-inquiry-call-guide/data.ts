@@ -175,69 +175,81 @@ export const situationRoutes: SituationRoute[] = [
 export const callFlowSteps = [
   {
     step: 1,
-    title: "Open warm",
-    description: "\"Hi [name], this is [you] with A Portland Career — how's it going?\" Let them settle in. Keep it natural.",
+    title: "Open warm — \"Thanks for reaching out\"",
+    description: "\"Hi [name], this is [you] with A Portland Career — thanks for reaching out. How's it going?\" Let them settle in. \"Thanks for reaching out\" is a small phrase that does a lot — it acknowledges the courage it took to make the call.",
   },
   {
     step: 2,
     title: "Reference what they shared",
-    description: "Bring up something from their intake note or LinkedIn. Ask a light opening question about what they wrote. This shows you prepared and you care.",
+    description: "Bring up something specific from their intake note or LinkedIn. Ask a light opening question about what they wrote. This shows you prepared and you care.",
   },
   {
     step: 3,
-    title: "Get them talking",
-    description: "If they didn't share much: \"Tell me a little more about what's been going on in your mind\" or \"What's been happening relative to your job search?\" Let them open up.",
+    title: "Get them talking — first half is theirs",
+    description: "\"Tell me a little more about what's been going on\" or \"What's been happening with your job search?\" The first half of the call belongs to them. Brief questions from you, mostly listening. This is where the choreography starts.",
   },
   {
     step: 4,
     title: "Listen and reflect",
-    description: "Confirm what you're hearing. Normalize their experience — many people are in a similar place. Share your own awareness or relate to what the team has seen. They should feel understood before you guide.",
+    description: "Confirm what you're hearing in your own words. Normalize their experience. They should feel understood before you guide — when they nod and say \"yes, that's it,\" you know the foundation is set.",
   },
   {
     step: 5,
     title: "Assess with key questions",
-    description: "Ask about timeline, income needs, application activity. These tell you which pathway fits. (See \"Questions That Tell You What You Need to Know\" below.)",
+    description: "Lead with timeline (\"How soon do you need a job?\"). Then direction, then income. Applications and response rate matter, but they're a smaller piece. (See \"Questions That Tell You What You Need to Know\" below for priorities.)",
   },
   {
     step: 6,
-    title: "Share your recommendation",
-    description: "\"Based on your situation, I think this kind of approach would be the best fit...\" Walk them through the pathway concisely, beginning to end. Explain why this path fits what they told you.",
+    title: "Talk them through the pathway with the journey map open",
+    description: "\"Based on what you've shared, the path I think fits is…\" Have the journey map for that pathway visible on your screen — walk them through it phase by phase. Frame it as flexible: some pieces will matter more for them, some less, and that's by design.",
   },
   {
     step: 7,
-    title: "Outline the next step",
-    description: "Either introduce them directly to the coach, or: \"I have a couple of people in mind — let me confirm the best fit and I'll follow up with that introduction.\" The second option is always safe if you're unsure.",
+    title: "Mention the fee as part of how it works",
+    description: "After the pathway lands, the fee is an afterthought tied to pacing and billing — not a gate. \"Sessions run an hour at $170, billed per session through QuickBooks. The first 15-minute call with your coach is no charge.\" If it's a good fit, this is just information they note and move past.",
   },
   {
     step: 8,
-    title: "Set expectations and close",
-    description: "Be specific about when they'll hear from you — \"in about 20 minutes,\" \"later this afternoon,\" or \"tomorrow morning.\" Mention: no fee for the first 15-minute conversation with their coach, the hourly rate, and that billing is per-session through QuickBooks.",
+    title: "Outline the next step and close",
+    description: "Either introduce them to the coach, or: \"I'm thinking of the coach who's the best fit for you — I'll connect you with them in the next 24 hours.\" Be specific about the timing. Then thank them for reaching out.",
   },
 ];
 
 export const keyQuestions = [
   {
+    priority: "Most important",
     question: "\"How soon do you need to be in a new job?\"",
-    whatItTellsYou: "Less than a few months = Pivot or Advancing. Five to six months or more with flexibility = could be Explorer.",
+    whatItTellsYou: "This is the question that protects the client from a bad fit. Even an Explorer-fit candidate won't do well in exploration sessions if they're in a real crunch to land work. Less than a few months = Pivot or Advancing. Five-plus months with flexibility = Explorer is on the table.",
   },
   {
+    priority: "Direction signal",
     question: "\"Do you have a sense of what you want to do, or is that part of what you're figuring out?\"",
-    whatItTellsYou: "\"I don't know\" + has time and flexibility = Explorer. \"I know but want something different\" = Pivot. Clear target = Advancing.",
+    whatItTellsYou: "\"I don't know\" + has time = Explorer. \"I know but want something different\" = Pivot. Clear target = Advancing. Pair this with the timeline answer to make the call.",
   },
   {
+    priority: "Pressure check",
     question: "\"How much do you need to be making, and by when?\"",
-    whatItTellsYou: "$75–80K+ within a year with urgency = Pivot (transferable skills, bridges). More flexibility on income and timeline = Explorer.",
+    whatItTellsYou: "$75–80K+ within a year with urgency = Pivot (transferable skills, bridges). Real flexibility on income + timeline = Explorer is viable. Use this to confirm whether the pacing of Explorer actually fits their life.",
   },
   {
-    question: "\"How many applications have you been sending out? What's your response rate?\"",
-    whatItTellsYou: "High volume, very low response = materials issue → start with Joanie. Getting interviews but not closing = interview prep coach.",
+    priority: "Useful, not the gate",
+    question: "\"Have you been sending applications? What's the response been like?\"",
+    whatItTellsYou: "Less central than timeline, but still tells you something. High volume + very low response = likely a materials issue → loop in Joanie. Getting interviews but not closing = interview prep. Don't let this question crowd out the timeline conversation.",
   },
 ];
 
 export const avoidList = [
   {
+    title: "Leading with the fee",
+    detail: "Don't open with — or rush toward — \"can you pay $170 an hour?\" That puts the relationship on the wrong footing. The fee is information they need, but it lands as an afterthought once they can see the pathway fits. Reflect their situation back, talk through the fitting service, then mention how billing works.",
+  },
+  {
+    title: "Emailing journey maps to the client",
+    detail: "Use the journey maps yourself during the call to talk them through what working with us looks like. Don't send them out — that's the coach's job after their first conversation. We want the map to land in the context the coach sets, not as a cold attachment.",
+  },
+  {
     title: "Talking too much about yourself",
-    detail: "If the caller asks about you, keep it brief. Watch how long you're talking — the caller should be doing most of it.",
+    detail: "If the caller asks about you, keep it brief. Watch how long you're talking — the caller should be doing most of it, especially in the first half.",
   },
   {
     title: "Taking calls when you're not settled",
@@ -245,7 +257,7 @@ export const avoidList = [
   },
   {
     title: "Trying to have all the answers",
-    detail: "If they ask something you don't know, just say: \"That's a great question — I'm not sure about that. Let me do a little digging and get back to you.\" Lean on the team.",
+    detail: "If they ask something you don't know, just say: \"That's a great question — let me look into that and get back to you.\" Lean on the team.",
   },
   {
     title: "Recommending before you've listened",
@@ -253,7 +265,7 @@ export const avoidList = [
   },
   {
     title: "Feeling pressure to match the coach on the spot",
-    detail: "\"Let me confirm the best fit\" is always a perfectly good next step. You don't have to know exactly who — consult with Dan first if you need to.",
+    detail: "\"Let me confirm the best fit and follow up in the next 24 hours\" is always a perfectly good next step. You don't have to know exactly who — consult with Dan first if you need to.",
   },
 ];
 
@@ -265,3 +277,47 @@ export const pricingData = [
   { name: "Ursina Teuscher", rate: "$960 package", note: "Defer details to Ursina" },
   { name: "First 15-minute coach call", rate: "No charge", note: "Rapport-building conversation" },
 ];
+
+export interface FeeResponseStep {
+  scenario: string;
+  approach: string;
+  example: string;
+}
+
+export const feeResponseFlow: FeeResponseStep[] = [
+  {
+    scenario: "They hear $170 and say nothing / move on",
+    approach: "That's the most common response when the pathway lands well. The fee was information, not an obstacle. Keep moving toward next steps.",
+    example: "\"Great — I'll send the introduction to [coach] in the next 24 hours and they'll reach out to set up the free 15-minute call.\"",
+  },
+  {
+    scenario: "They mention $170/session is too much",
+    approach: "Sliding scale is available — but only offer it when there's a clear financial signal. Step it down: $140 first, then $120, and in rare circumstances $100. Don't lead with the discount.",
+    example: "\"We do have a sliding scale for folks where the fee is a real stretch — we can step that down to $140 a session, and in some cases lower than that. Would that change the picture for you?\"",
+  },
+  {
+    scenario: "They want to think about it / aren't sure",
+    approach: "Remind them the first 15-minute coach call is free. It gives them more information before deciding, with no pressure.",
+    example: "\"That's totally fair. The first call with [coach] is free — fifteen minutes, no commitment. That'll give you a better feel for whether it's the right fit before any money's on the table. Want me to set that up?\"",
+  },
+  {
+    scenario: "Clearly not interested / not the right time",
+    approach: "Close gracefully. Don't push. Thank them for reaching out — that's the lasting impression we want.",
+    example: "\"I appreciate you taking the time today, and thanks again for reaching out. If anything shifts down the road, you know where to find us.\"",
+  },
+];
+
+// Journey content lives in the shared `apc-journeys-data` package so the inquiry
+// call guide, intake system, and CRM all read from one source of truth. To edit
+// phases/sessions, update apc-journeys-data and `npm update apc-journeys-data` here.
+export {
+  JOURNEYS as journeys,
+  getJourneyByKey,
+  isJourneyKey,
+} from 'apc-journeys-data';
+export type {
+  Journey,
+  JourneyKey,
+  JourneyPhase,
+  JourneySession,
+} from 'apc-journeys-data';

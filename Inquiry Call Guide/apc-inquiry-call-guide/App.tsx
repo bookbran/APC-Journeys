@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import {
   Headphones, ClipboardList, MessageCircle, HelpCircle,
   Users, ArrowRight, AlertTriangle, DollarSign, Mail,
-  ChevronRight, Lightbulb, Heart, Search, Clock
+  ChevronRight, Lightbulb, Heart, Search, Clock, Map, Sparkles
 } from 'lucide-react';
 import {
   callFlowSteps, keyQuestions, situationRoutes, coaches,
-  avoidList, pricingData
+  avoidList, pricingData, feeResponseFlow, journeys, type Journey
 } from './data';
 
-type Tab = 'guide' | 'templates';
+type Tab = 'guide' | 'journeys' | 'templates';
 
 function App() {
   const [activeTab, setActiveTab] = useState<Tab>('guide');
@@ -47,6 +47,16 @@ function App() {
               The Guide
             </button>
             <button
+              onClick={() => setActiveTab('journeys')}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                activeTab === 'journeys'
+                  ? 'bg-apc-navy text-white'
+                  : 'text-apc-textLight hover:bg-slate-100'
+              }`}
+            >
+              Journey Maps
+            </button>
+            <button
               onClick={() => setActiveTab('templates')}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 activeTab === 'templates'
@@ -62,7 +72,9 @@ function App() {
 
       {/* Main Content */}
       <main className="max-w-5xl mx-auto px-6 py-8">
-        {activeTab === 'guide' ? <GuideContent /> : <TemplatesContent />}
+        {activeTab === 'guide' && <GuideContent />}
+        {activeTab === 'journeys' && <JourneysContent />}
+        {activeTab === 'templates' && <TemplatesContent />}
       </main>
 
       {/* Footer */}
@@ -225,14 +237,19 @@ function GuideContent() {
         <SectionHeading
           icon={<HelpCircle size={18} />}
           title="Questions That Tell You What You Need to Know"
-          subtitle="These help you determine which pathway and coach fit best"
+          subtitle="In priority order — timeline first, then direction, then pressure, then applications"
         />
         <div className="space-y-3">
           {keyQuestions.map((q, i) => (
             <Card key={i} className="!p-4">
               <div className="flex gap-3 items-start">
                 <Search size={16} className="text-apc-orange shrink-0 mt-0.5" />
-                <div>
+                <div className="flex-1">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-apc-orange bg-apc-orange/10 px-2 py-0.5 rounded-full">
+                      {q.priority}
+                    </span>
+                  </div>
                   <p className="font-serif font-bold text-apc-navy text-sm">{q.question}</p>
                   <p className="text-sm text-apc-textLight mt-1 flex items-start gap-1.5">
                     <ArrowRight size={13} className="shrink-0 mt-0.5 text-apc-purple" />
@@ -247,7 +264,7 @@ function GuideContent() {
           <p className="text-sm text-apc-orange flex items-start gap-2">
             <Lightbulb size={16} className="shrink-0 mt-0.5" />
             <span>
-              <strong>When in doubt between Explorer and Pivot:</strong> Lean Pivot. It assumes job search sooner, which is usually the safer recommendation. You can always mention that an exploring pathway exists if they have more time and want to go deeper.
+              <strong>Timeline is the gate, not the fee.</strong> Even an Explorer-fit candidate won't do well in exploration sessions if they need a job in weeks. If their timeline rules out Explorer, name it kindly and route to Pivot or Advancing — Emily is a strong fit when someone needs job search now.
             </span>
           </p>
         </div>
@@ -325,6 +342,7 @@ function GuideContent() {
         <SectionHeading
           icon={<DollarSign size={18} />}
           title="Pricing Quick Reference"
+          subtitle="The fee is information, not a gate. Mention it after the pathway lands."
         />
         <Card className="!p-0 overflow-hidden">
           <table className="w-full text-sm">
@@ -346,6 +364,35 @@ function GuideContent() {
             </tbody>
           </table>
         </Card>
+      </section>
+
+      {/* Section 7b: Fee Response Flow */}
+      <section>
+        <SectionHeading
+          icon={<DollarSign size={18} />}
+          title="When the Fee Comes Up"
+          subtitle="A few patterns that tend to show up — and how to meet them"
+        />
+        <div className="space-y-3">
+          {feeResponseFlow.map((row, i) => (
+            <Card key={i} className="!p-4">
+              <p className="font-serif font-bold text-sm text-apc-navy">{row.scenario}</p>
+              <p className="text-sm text-apc-textLight mt-1">{row.approach}</p>
+              <div className="mt-3 bg-apc-purple/5 border-l-4 border-apc-purple rounded-r-md px-3 py-2">
+                <p className="text-xs uppercase tracking-wider text-apc-purple/70 font-bold mb-1">Try saying</p>
+                <p className="text-sm text-apc-navy italic">{row.example}</p>
+              </div>
+            </Card>
+          ))}
+        </div>
+        <div className="mt-3 bg-apc-blue/5 border border-apc-blue/15 rounded-lg px-4 py-3">
+          <p className="text-sm text-apc-navy flex items-start gap-2">
+            <Lightbulb size={16} className="shrink-0 mt-0.5 text-apc-blue" />
+            <span>
+              <strong>On sliding scale:</strong> Only offer it when there's a clear financial signal. The default is full rate. We don't want to lead with a discount — that frames the work as cheaper than it is. But for clients in a tough spot, the scale is real and meaningful.
+            </span>
+          </p>
+        </div>
       </section>
 
       {/* Section 8: What to Avoid */}
@@ -372,6 +419,235 @@ function GuideContent() {
         </div>
       </section>
 
+    </div>
+  );
+}
+
+function JourneyTabButton({
+  journey, isActive, onClick,
+}: { journey: Journey; isActive: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`relative flex-1 px-4 py-3 text-left rounded-lg border transition-all ${
+        isActive
+          ? 'border-transparent shadow-sm text-white'
+          : 'border-slate-200 bg-white hover:border-apc-navy/30 text-apc-navy'
+      }`}
+      style={isActive ? { backgroundColor: journey.badgeColor } : undefined}
+    >
+      <p className="font-serif font-bold text-sm leading-tight">{journey.name}</p>
+      <p
+        className={`text-[11px] mt-0.5 ${
+          isActive ? 'text-white/85' : 'text-apc-textLight'
+        }`}
+      >
+        {journey.sessionCount}
+      </p>
+    </button>
+  );
+}
+
+function JourneyDetail({ journey }: { journey: Journey }) {
+  return (
+    <div className="space-y-6">
+      {/* Overview */}
+      <Card>
+        <div className="flex flex-col md:flex-row md:items-start gap-4">
+          <div className="flex-1">
+            <span
+              className="inline-block text-[10px] font-bold tracking-widest uppercase text-white px-2.5 py-1 rounded-full mb-2"
+              style={{ backgroundColor: journey.badgeColor }}
+            >
+              {journey.sessionCount}
+            </span>
+            <h3 className="font-serif font-bold text-2xl text-apc-navy">{journey.name}</h3>
+            <p className="font-serif italic text-sm text-apc-orange mt-1">{journey.tagline}</p>
+            <p className="text-sm text-apc-textLight mt-3 leading-relaxed">{journey.description}</p>
+            <p className="text-xs text-apc-textLight mt-3">
+              <span className="font-medium text-apc-navy">Recommended coaches:</span> {journey.recommendedCoaches}
+            </p>
+          </div>
+          <div className="md:w-72 shrink-0 space-y-2">
+            <div className="bg-emerald-50/40 border border-emerald-100 rounded-lg p-3">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
+                Best fit when
+              </p>
+              <ul className="space-y-0.5">
+                {journey.bestFor.map((item, i) => (
+                  <li key={i} className="text-xs text-apc-navy leading-snug">· {item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-amber-50/40 border border-amber-100 rounded-lg p-3">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-apc-orange mb-1">
+                Probably not when
+              </p>
+              <ul className="space-y-0.5">
+                {journey.notIdealWhen.map((item, i) => (
+                  <li key={i} className="text-xs text-apc-navy leading-snug">· {item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </Card>
+
+      {/* Phases */}
+      <div className="space-y-5">
+        {journey.phases.map((phase) => (
+          <div key={phase.id}>
+            <div className="flex items-center gap-3 mb-3">
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0"
+                style={{ backgroundColor: phase.color }}
+              >
+                {phase.id}
+              </div>
+              <div>
+                <p className="font-serif font-bold text-apc-navy">{phase.name}</p>
+                <p className="text-xs text-apc-textLight">{phase.subtitle}</p>
+              </div>
+            </div>
+
+            <div className="grid gap-3 md:grid-cols-3">
+              {phase.sessions.map((session) => (
+                <div
+                  key={session.id}
+                  className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden"
+                >
+                  <div className="h-1 w-full" style={{ backgroundColor: phase.color }} />
+                  <div className="p-4">
+                    <p
+                      className="text-[10px] font-bold uppercase tracking-wider"
+                      style={{ color: phase.color }}
+                    >
+                      Session {session.id}
+                    </p>
+                    <h4 className="font-serif font-bold text-sm text-apc-navy mt-0.5 leading-tight">
+                      {session.title}
+                    </h4>
+                    <ul className="mt-2 space-y-1">
+                      {session.activities.map((activity, i) => (
+                        <li key={i} className="text-xs text-apc-textLight leading-snug pl-3 relative">
+                          <span
+                            className="absolute left-0 top-0 font-bold"
+                            style={{ color: phase.color }}
+                          >
+                            ›
+                          </span>
+                          {activity}
+                        </li>
+                      ))}
+                    </ul>
+                    {session.homework ? (
+                      <div className="mt-2 pt-2 border-t border-dashed border-slate-200">
+                        <p className="text-[9px] font-bold uppercase tracking-wider text-apc-navy/60">
+                          Between sessions
+                        </p>
+                        <p className="text-xs text-apc-textLight italic mt-0.5 leading-snug">
+                          {session.homework}
+                        </p>
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function JourneysContent() {
+  const [activeJourney, setActiveJourney] = useState<Journey['key']>('explorer');
+  const journey = journeys.find((j) => j.key === activeJourney) ?? journeys[0];
+
+  return (
+    <div className="space-y-8">
+      {/* Intro / how to use */}
+      <section>
+        <SectionHeading
+          icon={<Map size={18} />}
+          title="Journey Maps"
+          subtitle="Have these visible during the call to talk clients through what working with us looks like"
+        />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <Card className="!p-4">
+            <div className="flex gap-2 items-start">
+              <div className="w-8 h-8 rounded-lg bg-apc-orange/10 text-apc-orange flex items-center justify-center shrink-0">
+                <Sparkles size={16} />
+              </div>
+              <div>
+                <p className="font-medium text-sm text-apc-navy">Journeys are flexible</p>
+                <p className="text-xs text-apc-textLight mt-0.5">
+                  Some pieces matter more for some clients than others — that's by design. Use the map
+                  as a guide for the conversation, not a script.
+                </p>
+              </div>
+            </div>
+          </Card>
+          <Card className="!p-4">
+            <div className="flex gap-2 items-start">
+              <div className="w-8 h-8 rounded-lg bg-apc-blue/10 text-apc-blue flex items-center justify-center shrink-0">
+                <Map size={16} />
+              </div>
+              <div>
+                <p className="font-medium text-sm text-apc-navy">Use them on the call</p>
+                <p className="text-xs text-apc-textLight mt-0.5">
+                  Pull up the right tab when you're recommending a pathway. Walk them through phase by
+                  phase so they can picture the work, not just hear about it.
+                </p>
+              </div>
+            </div>
+          </Card>
+          <Card className="!p-4">
+            <div className="flex gap-2 items-start">
+              <div className="w-8 h-8 rounded-lg bg-apc-purple/10 text-apc-purple flex items-center justify-center shrink-0">
+                <Mail size={16} />
+              </div>
+              <div>
+                <p className="font-medium text-sm text-apc-navy">Don't email them out</p>
+                <p className="text-xs text-apc-textLight mt-0.5">
+                  Sending the map cold misses the context. The assigned coach will share it after their
+                  first conversation, when it can land in the right frame.
+                </p>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* Tabs */}
+      <section>
+        <div className="flex flex-col md:flex-row gap-2 mb-5">
+          {journeys.map((j) => (
+            <JourneyTabButton
+              key={j.key}
+              journey={j}
+              isActive={activeJourney === j.key}
+              onClick={() => setActiveJourney(j.key)}
+            />
+          ))}
+        </div>
+        <JourneyDetail journey={journey} />
+      </section>
+
+      {/* Footer reminder */}
+      <section>
+        <div className="bg-apc-navy/5 border border-apc-navy/10 rounded-lg px-4 py-4">
+          <p className="text-sm text-apc-navy flex items-start gap-2">
+            <Lightbulb size={16} className="shrink-0 mt-0.5 text-apc-orange" />
+            <span>
+              <strong>Joanie works in parallel for every track.</strong> If materials are part of what they
+              need (likely on Pivot and Advancing), Joanie picks up resume, cover letter, and LinkedIn work
+              alongside the coach. On Explorer, materials show up later, after direction is clearer.
+            </span>
+          </p>
+        </div>
+      </section>
     </div>
   );
 }
