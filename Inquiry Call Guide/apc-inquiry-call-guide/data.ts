@@ -81,7 +81,6 @@ export const coaches: CoachProfile[] = [
     rate: "$170/hr",
     specialties: ["Pivoting", "Advancing", "Change Management", "Organizational Transformation"],
     bestFor: "Pivoters and advancers who think in systems — change managers, consultants, anyone navigating a career shift who wants structured strategy. ICF-certified with PwC, Capgemini, and Gates Foundation consulting background. Tech-savvy and builder-minded.",
-    note: "Training with the team (May 2026). Referred Brad Fortier.",
   },
   {
     name: "Brad Fortier",
@@ -89,7 +88,6 @@ export const coaches: CoachProfile[] = [
     rate: "$170/hr",
     specialties: ["Pivoting", "Advancing", "Facilitation", "DEI", "Communication"],
     bestFor: "Pivoters and advancers — especially those in facilitation, training, nonprofit, or people-centered roles. 20+ years in facilitation and applied improvisation with Nike, Logitech, Oregon Food Bank. Exceptional at helping clients articulate their story and strengths.",
-    note: "Training with the team (May 2026). Referred by Matt Roberts.",
   },
   {
     name: "Jeanne Zacarias",
@@ -97,7 +95,6 @@ export const coaches: CoachProfile[] = [
     rate: "$170/hr",
     specialties: ["Pivoting", "Advancing", "Coaching Psychology", "Marketing / Brand Narrative", "Mindfulness"],
     bestFor: "Pivoters and advancers — especially those drawn to personal development, narrative, and marketing-oriented careers. Integral coaching certification, M.A. Clinical Psychology in progress (Pepperdine), marketing director background (Dreamscape Immersive). Worked directly with Robert Kegan on developmental organizations.",
-    note: "First remote coach (based in LA) — opens APC to nationwide clients. Training with the team (May 2026).",
   },
   {
     name: "Dan Hahn",
