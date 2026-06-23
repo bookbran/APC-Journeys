@@ -110,9 +110,52 @@ function Card({ children, className = '' }: { children: React.ReactNode; classNa
   );
 }
 
-function GuideContent() {
+type GuideSection = 'prepare' | 'oncall' | 'route' | 'money' | 'avoid';
+
+const GUIDE_SECTIONS: { id: GuideSection; label: string; icon: React.ReactNode }[] = [
+  { id: 'prepare', label: 'Prepare', icon: <ClipboardList size={15} /> },
+  { id: 'oncall', label: 'On the Call', icon: <MessageCircle size={15} /> },
+  { id: 'route', label: 'Match & Route', icon: <Users size={15} /> },
+  { id: 'money', label: 'Talk Money', icon: <DollarSign size={15} /> },
+  { id: 'avoid', label: 'Avoid', icon: <AlertTriangle size={15} /> },
+];
+
+function GuideSubNav({ active, onSelect }: { active: GuideSection; onSelect: (s: GuideSection) => void }) {
   return (
-    <div className="space-y-10">
+    <div>
+      <p className="text-xs text-apc-textLight mb-2">Walk the call in order, or jump to what you need.</p>
+      <div className="flex flex-wrap items-center gap-1.5">
+        {GUIDE_SECTIONS.map((s, i) => (
+          <React.Fragment key={s.id}>
+            <button
+              onClick={() => onSelect(s.id)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors ${
+                active === s.id
+                  ? 'bg-apc-orange text-white shadow-sm'
+                  : 'bg-white border border-slate-200 text-apc-textLight hover:border-apc-orange/40 hover:text-apc-navy'
+              }`}
+            >
+              {s.icon}
+              {s.label}
+            </button>
+            {i < GUIDE_SECTIONS.length - 1 && (
+              <ChevronRight size={13} className="text-slate-300 hidden sm:block" />
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function GuideContent() {
+  const [section, setSection] = useState<GuideSection>('prepare');
+  return (
+    <div className="space-y-8">
+      <GuideSubNav active={section} onSelect={setSection} />
+
+      {section === 'prepare' && (
+      <div className="space-y-10">
 
       {/* Section 1: Your Role */}
       <section>
@@ -194,6 +237,11 @@ function GuideContent() {
           </div>
         </Card>
       </section>
+      </div>
+      )}
+
+      {section === 'oncall' && (
+      <div className="space-y-10">
 
       {/* Section 3: The Call Flow */}
       <section>
@@ -269,6 +317,11 @@ function GuideContent() {
           </p>
         </div>
       </section>
+      </div>
+      )}
+
+      {section === 'route' && (
+      <div className="space-y-10">
 
       {/* Section 5: Situation → Journey → Coach */}
       <section>
@@ -336,6 +389,11 @@ function GuideContent() {
           ))}
         </div>
       </section>
+      </div>
+      )}
+
+      {section === 'money' && (
+      <div className="space-y-10">
 
       {/* Section 7: Pricing */}
       <section>
@@ -394,6 +452,11 @@ function GuideContent() {
           </p>
         </div>
       </section>
+      </div>
+      )}
+
+      {section === 'avoid' && (
+      <div className="space-y-10">
 
       {/* Section 8: What to Avoid */}
       <section>
@@ -418,6 +481,8 @@ function GuideContent() {
           ))}
         </div>
       </section>
+      </div>
+      )}
 
     </div>
   );
