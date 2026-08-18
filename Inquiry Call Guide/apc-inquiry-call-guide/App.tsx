@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import {
   callFlowSteps, keyQuestions, situationRoutes, coaches,
-  avoidList, pricingData, feeResponseFlow, journeys, type Journey
+  avoidList, pricingData, feeResponseFlow, journeys, earlyCareerScenario, type Journey
 } from './data';
 
 type Tab = 'guide' | 'journeys' | 'templates';
@@ -353,6 +353,60 @@ function GuideContent() {
             </Card>
           ))}
         </div>
+      </section>
+
+      {/* Section 5b: Early Career & Parent Inquiries */}
+      <section>
+        <SectionHeading
+          icon={<Heart size={18} />}
+          title={earlyCareerScenario.title}
+          subtitle={earlyCareerScenario.subtitle}
+        />
+        <Card>
+          <div className="space-y-5">
+            <div className="bg-emerald-50/40 border border-emerald-100 rounded-lg px-4 py-3">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">Is this a fit?</p>
+              <p className="text-sm text-apc-navy leading-relaxed">{earlyCareerScenario.isThisAFit}</p>
+            </div>
+
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-apc-orange mb-1">Best-fit coach</p>
+              <p className="text-sm text-apc-textLight leading-relaxed">{earlyCareerScenario.bestFitCoach}</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-apc-purple mb-2">What the service looks like</p>
+                <ul className="space-y-1.5">
+                  {earlyCareerScenario.whatTheServiceLooks.map((item, i) => (
+                    <li key={i} className="text-sm text-apc-textLight leading-snug flex gap-2">
+                      <span className="text-apc-purple font-bold shrink-0">›</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-apc-navy mb-2">When a parent is the one inquiring</p>
+                <ul className="space-y-1.5">
+                  {earlyCareerScenario.parentBuyerHandling.map((item, i) => (
+                    <li key={i} className="text-sm text-apc-textLight leading-snug flex gap-2">
+                      <span className="text-apc-navy font-bold shrink-0">›</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="bg-apc-orange/5 border border-apc-orange/15 rounded-lg px-4 py-3">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-apc-orange mb-1 flex items-center gap-1.5">
+                <DollarSign size={12} /> Pricing ballpark
+              </p>
+              <p className="text-sm text-apc-navy leading-relaxed">{earlyCareerScenario.pricingBallpark}</p>
+            </div>
+          </div>
+        </Card>
       </section>
 
       {/* Section 6: Team Profiles */}

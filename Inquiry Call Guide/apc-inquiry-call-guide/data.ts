@@ -20,8 +20,8 @@ export const coaches: CoachProfile[] = [
     name: "Aimee Chase-Bosland",
     title: "Job Search / Career Decision Coach",
     rate: "$170/hr",
-    specialties: ["Pivoting", "Job Search", "Interview Prep", "Networking"],
-    bestFor: "Pivoters and advancers across professions. Especially strong at helping clients see where their strengths transfer. Expert interview prep coach. Also mentoring Victoria.",
+    specialties: ["Pivoting", "Job Search", "Interview Prep", "Networking", "Early Career / New Grad"],
+    bestFor: "Pivoters and advancers across professions. Especially strong at helping clients see where their strengths transfer. Expert interview prep coach. Also works at Portland Community College supporting recent grads and current students, so she is a strong secondary fit for early-career and new-grad clients. Also mentoring Victoria.",
   },
   {
     name: "Victoria",
@@ -35,8 +35,9 @@ export const coaches: CoachProfile[] = [
     name: "Emily Hordes",
     title: "Job Search Coach",
     rate: "$170/hr",
-    specialties: ["Advancing", "Pivoting", "Networking", "Creative Careers", "Accountability"],
-    bestFor: "Advancers and pivoters who need strategic, action-oriented accountability. Go-to coach for creative professionals and portfolio-based job searches. Expert networking coach.",
+    specialties: ["Early Career / New Grad", "Advancing", "Pivoting", "Networking", "Creative Careers", "Accountability"],
+    bestFor: "Our best early-career and new-grad job search coach. A big part of her day job is advising college students on landing their first jobs, so recent grads are right in her wheelhouse. Also our go-to for creative professionals, portfolio-based searches, and advancers/pivoters who need strategic, action-oriented accountability. Expert networking coach.",
+    note: "Not always available for calls or new intros — recommend her by name anyway and note we will line up the intro when the timing is right (often ~August).",
   },
   {
     name: "Krute Aroonsuck",
@@ -191,7 +192,40 @@ export const situationRoutes: SituationRoute[] = [
     coaches: "Aimee, Victoria, Matt, Jeanne",
     signal: "\"I just want to know what I could be doing\" — interested in skill mapping, not necessarily materials work yet",
   },
+  {
+    situation: "Recent grad / early career — or a parent inquiring on behalf of their new-grad child",
+    journey: "Advancing (early career)",
+    journeyColor: "#16163f",
+    coaches: "Emily (best fit), Aimee",
+    signal: "\"My son/daughter just graduated and is looking for a first job.\" Normal job search with extra weight on resume and alumni networking. If a parent is the one reaching out, see the Early Career & Parent Inquiries note below — the student has to be the one who engages.",
+  },
 ];
+
+// A recurring special situation: a parent (or other family member) reaches out
+// looking for coaching for their recent-grad or early-career child. This is a
+// good fit for us, but it needs a specific, low-pressure choreography.
+export const earlyCareerScenario = {
+  title: "Early Career & Parent Inquiries",
+  subtitle: "When a parent reaches out for their recent-grad son or daughter",
+  isThisAFit:
+    "Yes. Early-career and first-job search is a genuine specialty, not a stretch. Usually it is a job search, sometimes career exploration, but almost always about helping their kid get moving.",
+  bestFitCoach:
+    "Emily Hordes is the best fit — advising college students into their first jobs is a big part of her actual day job. Recommend her by name even if she is not currently taking calls; note we will line up the intro when the timing is right (often ~August). Aimee is a strong secondary fit (she supports recent grads and students at Portland Community College), and any of our job search coaches can do this well.",
+  whatTheServiceLooks: [
+    "It is our normal job search process — walk them through the job search journey map on the call.",
+    "The early-career nuance: a bit more attention on the resume and on helping the student tap their alumni network, since they do not have a long track record yet.",
+    "Joanie supports materials (resume, cover letter, LinkedIn) in parallel, as with any job seeker.",
+  ],
+  parentBuyerHandling: [
+    "Keep expectations low: the parent is the buyer, not the client, and these often do not convert because the student has to want it. Provide good information, don't over-invest or chase.",
+    "Make it easy for the parent to hand the information to their child.",
+    "Next step: confirm whether the student is actually interested in connecting.",
+    "If yes, give the parent your (the intake coach's) email so the student can reach back out directly to confirm their own interest.",
+    "Once the student reaches out, you facilitate the introduction to Emily (or the assigned coach) when the timing is right.",
+  ],
+  pricingBallpark:
+    "Billed session by session, no big upfront package. For a typical new grad, ballpark roughly four to five job search sessions plus a couple of hours with Joanie — about $800 to $1200 total, paced one session at a time. Remind them the first 15-minute coach call is free.",
+};
 
 export const callFlowSteps = [
   {
