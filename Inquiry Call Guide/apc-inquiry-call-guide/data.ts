@@ -224,7 +224,7 @@ export const earlyCareerScenario = {
     "Once the student reaches out, you facilitate the introduction to Emily (or the assigned coach) when the timing is right.",
   ],
   pricingBallpark:
-    "Billed session by session, no big upfront package. For a typical new grad, ballpark roughly four to five job search sessions plus a couple of hours with Joanie — about $800 to $1200 total, paced one session at a time. Remind them the first 15-minute coach call is free.",
+    "Billed session by session, no big upfront package. For a typical new grad, ballpark roughly four to five job search sessions plus a couple of hours with Joanie — about $800 to $1200 total, paced one session at a time. Remind them their first conversation with their coach is free.",
 };
 
 export const callFlowSteps = [
@@ -240,8 +240,8 @@ export const callFlowSteps = [
   },
   {
     step: 3,
-    title: "Get them talking — first half is theirs",
-    description: "\"Tell me a little more about what's been going on\" or \"What's been happening with your job search?\" The first half of the call belongs to them. Brief questions from you, mostly listening. This is where the choreography starts.",
+    title: "Get them talking: the call is theirs",
+    description: "\"Tell me a little more about what's been going on\" or \"What's been happening with your job search?\" The whole call belongs to them. Brief questions from you, mostly listening. This is where the choreography starts.",
   },
   {
     step: 4,
@@ -261,12 +261,12 @@ export const callFlowSteps = [
   {
     step: 7,
     title: "Mention the fee as part of how it works",
-    description: "After the pathway lands, the fee is an afterthought tied to pacing and billing — not a gate. \"Sessions run an hour at $170, billed per session through QuickBooks. The first 15-minute call with your coach is no charge.\" If it's a good fit, this is just information they note and move past.",
+    description: "After the pathway lands, the fee is an afterthought tied to pacing and billing — not a gate. \"Sessions run an hour at $170, billed per session through QuickBooks. Your first conversation with your coach is free.\" If it's a good fit, this is just information they note and move past.",
   },
   {
     step: 8,
     title: "Outline the next step and close",
-    description: "Either introduce them to the coach, or: \"I'm thinking of the coach who's the best fit for you — I'll connect you with them in the next 24 hours.\" Be specific about the timing. Then thank them for reaching out.",
+    description: "Either introduce them to the coach, or: \"I'm thinking of the coach who's the best fit for you — I'll connect you with them, usually later today.\" Be specific about the timing. Then thank them for reaching out.",
   },
 ];
 
@@ -304,7 +304,7 @@ export const avoidList = [
   },
   {
     title: "Talking too much about yourself",
-    detail: "If the caller asks about you, keep it brief. Watch how long you're talking — the caller should be doing most of it, especially in the first half.",
+    detail: "If the caller asks about you, keep it brief. Watch how long you're talking — the caller should be doing most of it.",
   },
   {
     title: "Taking calls when you're not settled",
@@ -330,7 +330,7 @@ export const pricingData = [
   { name: "Aimee, Victoria, Emily, Krute, Autumn, Matt, Brad, Jeanne", rate: "$170/hr", note: "All other coaches" },
   { name: "Joanie Donnelly", rate: "$100/hr", note: "Materials specialist" },
   { name: "Ursina Teuscher", rate: "$960 package", note: "Defer details to Ursina" },
-  { name: "First 15-minute coach call", rate: "No charge", note: "Rapport-building conversation" },
+  { name: "First conversation with the coach", rate: "No charge", note: "Rapport-building conversation" },
 ];
 
 export interface FeeResponseStep {
@@ -343,7 +343,7 @@ export const feeResponseFlow: FeeResponseStep[] = [
   {
     scenario: "They hear $170 and say nothing / move on",
     approach: "That's the most common response when the pathway lands well. The fee was information, not an obstacle. Keep moving toward next steps.",
-    example: "\"Great — I'll send the introduction to [coach] in the next 24 hours and they'll reach out to set up the free 15-minute call.\"",
+    example: "\"Great — I'll send the introduction to [coach] today, and they'll reach out to set up your free first conversation.\"",
   },
   {
     scenario: "They mention $170/session is too much",
@@ -352,7 +352,7 @@ export const feeResponseFlow: FeeResponseStep[] = [
   },
   {
     scenario: "They want to think about it / aren't sure",
-    approach: "Remind them the first 15-minute coach call is free. It gives them more information before deciding, with no pressure.",
+    approach: "Remind them their first conversation with their coach is free. It gives them more information before deciding, with no pressure.",
     example: "\"That's totally fair. The first call with [coach] is free — fifteen minutes, no commitment. That'll give you a better feel for whether it's the right fit before any money's on the table. Want me to set that up?\"",
   },
   {

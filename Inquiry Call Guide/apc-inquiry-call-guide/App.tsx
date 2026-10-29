@@ -801,7 +801,7 @@ function TemplatesContent() {
               </div>
               <div>
                 <p className="text-sm font-medium text-apc-navy">4. What the client is expecting</p>
-                <p className="text-sm text-apc-textLight">Confirm what you told the client about next steps — that they'll hear from the coach to schedule a free 15-minute conversation.</p>
+                <p className="text-sm text-apc-textLight">Confirm what you told the client about next steps — that they'll hear from the coach to schedule a free first conversation, usually the same day.</p>
               </div>
               <div>
                 <p className="text-sm font-medium text-apc-navy">5. CC the client</p>
